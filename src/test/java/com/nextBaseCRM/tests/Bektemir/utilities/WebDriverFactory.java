@@ -13,25 +13,19 @@ import org.openqa.selenium.opera.OperaDriver;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverFactory {
-    public static WebDriver getDriver(String browserType) {
-        if (browserType.equalsIgnoreCase("chrome")) {
-
+    //Chrome
+    public static WebDriver getDriver(String browserType){
+        if (browserType.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().setup();
-            return new ChromeDriver();
 
-        } else if (browserType.equalsIgnoreCase("firefox")) {
+            return new ChromeDriver();
+        }else if ((browserType.equalsIgnoreCase("firefox"))){
             WebDriverManager.firefoxdriver().setup();
+
             return new FirefoxDriver();
-        } else if (browserType.equalsIgnoreCase("edge")) {
-            WebDriverManager.edgedriver().setup();
-            return new EdgeDriver();
-        } else if (browserType.equalsIgnoreCase("opera")) {
-            WebDriverManager.operadriver().setup();
-            return new OperaDriver();
-        } else {
-            throw new RuntimeException("No such a browser found as "+browserType);
-//          System.out.println("Given browser type doesn't exist , Driver = null!");
-            //return null;
+        }else{
+            System.out.println("Given browser type does not exist. Driver = null!");
+            return null;
         }
     }
 
