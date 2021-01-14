@@ -69,35 +69,41 @@ public class CreateAPoll4 {
 //==================================DOING STEP 1 IN MY TEST EXECUTION====================================================
         driver.findElement(By.id("feed-add-post-form-tab-vote")).click();
         sleep(2);
-
 //==================================DOING STEP 2 IN MY TEST EXECUTION====================================================
         driver.switchTo().frame(0);
         WebElement mainField = driver.findElement(By.xpath("//body[@contenteditable='true']"));
         mainField.sendKeys("Testing My Poll");
         driver.switchTo().defaultContent();
+        sleep(3);
 //==================================DOING STEP 3 IN MY TEST EXECUTION====================================================
         WebElement addMoreElement = driver.findElement(By.xpath("//a[.='Add more']"));
         addMoreElement.click();
         driver.findElement(By.xpath("//div[.='Sevara Isroilova']/div")).click();
+        sleep(3);
         driver.findElement(By.xpath("//span[@class='popup-window-close-icon']")).click();
+        sleep(3);
 //==================================DOING STEP 4 IN MY TEST EXECUTION====================================================
         WebElement questionFIeld = driver.findElement(By.cssSelector("input#question_0"));
         questionFIeld.sendKeys("Who is the best soccer player in 2020?");
+        sleep(3);
 //==================================DOING STEP 5 IN MY TEST EXECUTION====================================================
         WebElement answerField = driver.findElement(By.id("answer_0__0_"));
         answerField.sendKeys("Cristiano Ronaldo");
+        sleep(3);
 //==================================DOING STEP 6 IN MY TEST EXECUTION====================================================
         WebElement checkbox = driver.findElement(By.id("multi_0"));
         checkbox.click();
 //==================================DOING STEP 7 IN MY TEST EXECUTION====================================================
         WebElement addQuestion = driver.findElement(By.xpath("//a[.='Add question']"));
         addQuestion.click();
+        sleep(3);
 //==================================DOING STEP 8 IN MY TEST EXECUTION====================================================
-//        WebElement sendButton = driver.findElement(By.cssSelector("button#blog-submit-button-save"));
-//        sendButton.click();
+         WebElement sendButton = driver.findElement(By.cssSelector("button#blog-submit-button-save"));
+         sendButton.click();
+        sleep(4);
 //==================================DOING STEP 9 IN MY TEST EXECUTION====================================================
-        WebElement cancelButton = driver.findElement(By.xpath("//*[@class='ui-btn ui-btn-lg ui-btn-link']"));
-        cancelButton.click();
+     // WebElement cancelButton = driver.findElement(By.xpath("//*[@class='ui-btn ui-btn-lg ui-btn-link']"));
+     // cancelButton.click();
     }
 
 
