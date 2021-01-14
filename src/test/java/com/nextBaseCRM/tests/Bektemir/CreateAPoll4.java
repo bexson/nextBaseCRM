@@ -63,6 +63,14 @@ public class CreateAPoll4 {
 //==================================FINISHED WITH MY PRE-CONDITION====================================================
     }
 
+    @Test
+    public void test_execution_forUS4(){
+//==================================DOING STEP 1 IN MY TEST CASE====================================================
+        driver.findElement(By.id("feed-add-post-form-tab-vote")).click();
+        sleep(2);
+
+    }
+
 
 
 }
