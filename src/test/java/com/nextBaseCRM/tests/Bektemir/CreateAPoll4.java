@@ -4,6 +4,7 @@ import com.nextBaseCRM.tests.Bektemir.utilities.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -69,6 +70,11 @@ public class CreateAPoll4 {
         driver.findElement(By.id("feed-add-post-form-tab-vote")).click();
         sleep(2);
 
+//==================================DOING STEP 2 IN MY TEST CASE====================================================
+        driver.switchTo().frame(0);
+        WebElement mainField = driver.findElement(By.xpath("//body[@contenteditable='true']"));
+        mainField.sendKeys("Testing My Poll");
+        driver.switchTo().defaultContent();
     }
 
 
