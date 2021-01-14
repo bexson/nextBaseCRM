@@ -61,7 +61,7 @@ public class CreateAPoll4 {
          String expectedURL = "https://login2.nextbasecrm.com/stream/?login=yes";
          String actualURL = driver.getCurrentUrl();
          Assert.assertEquals(expectedURL,actualURL);
-//==================================FINISHED WITH MY PRE-CONDITION====================================================
+//==================================FINISHED WITH MY PRE-CONDITION======================================================
     }
 
     @Test
