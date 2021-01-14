@@ -66,16 +66,21 @@ public class CreateAPoll4 {
 
     @Test
     public void test_execution_forUS4(){
-//==================================DOING STEP 1 IN MY TEST CASE====================================================
+//==================================DOING STEP 1 IN MY TEST EXECUTION====================================================
         driver.findElement(By.id("feed-add-post-form-tab-vote")).click();
         sleep(2);
 
-//==================================DOING STEP 2 IN MY TEST CASE====================================================
+//==================================DOING STEP 2 IN MY TEST EXECUTION====================================================
         driver.switchTo().frame(0);
         WebElement mainField = driver.findElement(By.xpath("//body[@contenteditable='true']"));
         mainField.sendKeys("Testing My Poll");
         driver.switchTo().defaultContent();
-    }
+//==================================DOING STEP 3 IN MY TEST EXECUTION====================================================
+        WebElement addMoreElement = driver.findElement(By.xpath("//a[.='Add more']"));
+        addMoreElement.click();
+        driver.findElement(By.xpath("//div[.='Sevara Isroilova']/div")).click();
+        driver.findElement(By.xpath("//span[@class='popup-window-close-icon']")).click();
+}
 
 
 
