@@ -89,6 +89,9 @@ public class CreateAPoll4 {
 //==================================DOING STEP 6 IN MY TEST EXECUTION====================================================
         WebElement checkbox = driver.findElement(By.id("multi_0"));
         checkbox.click();
+//==================================DOING STEP 7 IN MY TEST EXECUTION====================================================
+        WebElement addQuestion = driver.findElement(By.xpath("//a[.='Add question']"));
+        addQuestion.click();
 
     }
 
