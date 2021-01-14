@@ -80,7 +80,10 @@ public class CreateAPoll4 {
         addMoreElement.click();
         driver.findElement(By.xpath("//div[.='Sevara Isroilova']/div")).click();
         driver.findElement(By.xpath("//span[@class='popup-window-close-icon']")).click();
-}
+//==================================DOING STEP 4 IN MY TEST EXECUTION====================================================
+        WebElement questionFIeld = driver.findElement(By.cssSelector("input#question_0"));
+        questionFIeld.sendKeys("Who is the best soccer player in 2020?");
+    }
 
 
 
