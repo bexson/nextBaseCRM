@@ -93,9 +93,11 @@ public class CreateAPoll4 {
         WebElement addQuestion = driver.findElement(By.xpath("//a[.='Add question']"));
         addQuestion.click();
 //==================================DOING STEP 8 IN MY TEST EXECUTION====================================================
-        WebElement sendButton = driver.findElement(By.cssSelector("button#blog-submit-button-save"));
-        sendButton.click();
-
+//        WebElement sendButton = driver.findElement(By.cssSelector("button#blog-submit-button-save"));
+//        sendButton.click();
+//==================================DOING STEP 9 IN MY TEST EXECUTION====================================================
+        WebElement cancelButton = driver.findElement(By.xpath("//*[@class='ui-btn ui-btn-lg ui-btn-link']"));
+        cancelButton.click();
     }
 
 
