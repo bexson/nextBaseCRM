@@ -83,9 +83,12 @@ public class CreateAPoll4 {
 //==================================DOING STEP 4 IN MY TEST EXECUTION====================================================
         WebElement questionFIeld = driver.findElement(By.cssSelector("input#question_0"));
         questionFIeld.sendKeys("Who is the best soccer player in 2020?");
-//==================================DOING STEP 4 IN MY TEST EXECUTION====================================================
+//==================================DOING STEP 5 IN MY TEST EXECUTION====================================================
         WebElement answerField = driver.findElement(By.id("answer_0__0_"));
         answerField.sendKeys("Cristiano Ronaldo");
+//==================================DOING STEP 6 IN MY TEST EXECUTION====================================================
+        WebElement checkbox = driver.findElement(By.id("multi_0"));
+        checkbox.click();
 
     }
 
