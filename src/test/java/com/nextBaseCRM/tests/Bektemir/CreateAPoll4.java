@@ -15,14 +15,14 @@ import java.util.concurrent.TimeUnit;
 public class CreateAPoll4 {
     WebDriver driver;
 
-    public static void manageWebDriver(WebDriver driver){
+    public void manageWebDriver(WebDriver driver){
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
-    public static void findElementXpath(String stringXpath, WebDriver driver){
+    public void findElementXpath(String stringXpath, WebDriver driver){
         driver.findElement(By.xpath(stringXpath));
     }
-    public static void sleep(long seconds){
+    public void sleep(long seconds){
         try {
             Thread.sleep(seconds*1000);
         }catch (InterruptedException e){
@@ -33,12 +33,34 @@ public class CreateAPoll4 {
     @BeforeClass
     public void setupDriver(){
        WebDriverManager.chromedriver().setup();
-       WebDriver driver = new ChromeDriver();
+       driver = new ChromeDriver();
 
        manageWebDriver(driver);
        driver.get("https://login2.nextbasecrm.com/stream/");
       sleep(2);
+    }
 
+    @AfterClass
+    public void closeDriver(){
+        sleep(2);
+        driver.close();
+    }
+
+    @Test
+    public void pre_condition_for_US4(){
+//==================================PRE-CONDITION FOR MY USER STORY4====================================================
+         String expectedTitle = "Authorization";
+         String actualTitle = driver.getTitle();
+         Assert.assertEquals(expectedTitle,actualTitle);
+
+        driver.findElement(By.name("USER_LOGIN")).sendKeys("helpdesk33@cybertekschool.com"); //username
+        driver.findElement(By.name("USER_PASSWORD")).sendKeys("UserUser");//password
+
+       driver.findElement(By.className("login-btn")).click();//click login button
+         String expectedURL = "https://login2.nextbasecrm.com/stream/?login=yes";
+         String actualURL = driver.getCurrentUrl();
+         Assert.assertEquals(expectedURL,actualURL);
+//==================================FINISHED WITH MY PRE-CONDITION====================================================
     }
 
 
