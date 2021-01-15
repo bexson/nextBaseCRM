@@ -1,10 +1,11 @@
 package com.nextBaseCRM.tests.fatih;
 
-import com.nextBaseCRM.tests.Bektemir.utilities.WebDriverFactory;
+import com.nextBaseCRM.tests.fatih.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -34,6 +35,11 @@ public class UserStory6 {
         driver.findElement(By.xpath("//body//input[@name = 'USER_PASSWORD']")).sendKeys(password + Keys.ENTER);
     }
 
+    @AfterClass
+    public void tearDownClass(){
+        driver.quit();
+    }
+
 
 
     //Checking for help desk
@@ -56,6 +62,7 @@ public class UserStory6 {
 
     @Test
     public void testCase2(){
+        //1. Click the clock out button in the popped up window
         WebElement clockOutButton = driver.findElement(By.xpath("//body//span[@class ='webform-small-button tm-popup-main-button webform-small-button-decline']"));
         clockOutButton.click();
 
@@ -77,6 +84,7 @@ public class UserStory6 {
 
     @Test
     public void testCase4(){
+        //Choose starting time by clicking left box with time option
         WebElement eventStartTime = driver.findElement(By.xpath("//body//input[@class = 'tm-popup-event-start-time-textbox_am_pm']"));
         sleep(1);
         eventStartTime.click();
@@ -90,9 +98,7 @@ public class UserStory6 {
         WebElement startTimeSelect = driver.findElement(By.xpath("//body//span[@class='popup-window-button popup-window-button-create']"));
         startTimeSelect.click();
 
-//        WebElement eventEndTime = driver.findElement(By.xpath("//body//input[@class = 'tm-popup-event-end-time-textbox_am_pm']"));
-//        eventEndTime.click();
-
+        //Choose ending time  by clicking right box with time option
         WebElement eventEndTimeHour = driver.findElement(By.xpath("//body//input[@title='Hours']"));
         eventEndTimeHour.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE,"11");
 
@@ -102,9 +108,11 @@ public class UserStory6 {
         WebElement endTimeSelect = driver.findElement(By.xpath("//body//span[@class='popup-window-button popup-window-button-create']"));
         endTimeSelect.click();
 
+        //Type a name for the event
         WebElement eventTextArea = driver.findElement(By.xpath("//body//input[@class = 'tm-popup-event-form-textbox_am_pm']"));
         eventTextArea.sendKeys("Daily Stand-Up Meeting");
 
+        //Click the button with plus symbol next to the text area in the same section
         WebElement eventPlusButton = driver.findElement(By.xpath("//body//span[@class = 'tm-popup-event-form-submit']"));
         eventPlusButton.click();
 
@@ -112,11 +120,11 @@ public class UserStory6 {
     @Test
     public void testCase5(){
         sleep(2);
+        //Click pen icon at the top right corner of popped up window
         WebElement pencilIcon = driver.findElement(By.xpath("//body//span[@class = 'tm-popup-notice-pencil']"));
         pencilIcon.click();
 
-
-
+        //Edit work day starting time by using the boxes under the clock image with title Start
         WebElement workStartTimeHour = driver.findElement(By.xpath("//body//td[@class='tm-double-clock-table-row tm-double-clock-table-first']//td[@rowspan='2']/input[@title='Hours']"));
         workStartTimeHour.sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE,"8");
 
@@ -138,7 +146,5 @@ public class UserStory6 {
 
         WebElement workTimeSaveButton = driver.findElement(By.xpath("//body//div[@class='popup-window'][2]//div[@class='popup-window-buttons']//span[.='Save']"));
         workTimeSaveButton.click();
-
-
     }
 }
