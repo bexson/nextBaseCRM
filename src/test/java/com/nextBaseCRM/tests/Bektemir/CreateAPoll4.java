@@ -92,6 +92,4 @@ public class CreateAPoll4 {
    // cancelButton.click();
     }
 
-
-
 }
