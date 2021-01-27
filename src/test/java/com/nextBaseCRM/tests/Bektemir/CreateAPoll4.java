@@ -3,23 +3,13 @@ package com.nextBaseCRM.tests.Bektemir;
 import com.nextBaseCRM.tests.Bektemir.utilities.ConfigurationReader;
 import com.nextBaseCRM.tests.Bektemir.utilities.WebDriverFactory;
 import com.nextBaseCRM.tests.base.TestBase;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 public class CreateAPoll4 extends TestBase {
-    public final String url = ConfigurationReader.getProperty("url");
-    private final String username1 = ConfigurationReader.getProperty("username1");
-    private final String password = ConfigurationReader.getProperty("password");
-
     @BeforeClass
     public void getUrl() {
         driver.get(url);
@@ -32,7 +22,7 @@ public class CreateAPoll4 extends TestBase {
         String actualTitle = driver.getTitle();
         Assert.assertEquals(expectedTitle, actualTitle);
 
-        driver.findElement(By.name("USER_LOGIN")).sendKeys(username1); //username
+        driver.findElement(By.name("USER_LOGIN")).sendKeys(helpdesk); //username
         driver.findElement(By.name("USER_PASSWORD")).sendKeys(password); //password
         driver.findElement(By.className("login-btn")).click();//click login button
         String actualURL = driver.getCurrentUrl();
