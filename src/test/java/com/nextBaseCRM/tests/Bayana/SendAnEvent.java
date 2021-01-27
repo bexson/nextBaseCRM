@@ -42,14 +42,18 @@ public class SendAnEvent  {
     public void test_case_1(){
 
     driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-calendar']//span")).click();
-
     driver.findElement(By.xpath("//input[@id='feed-cal-event-namecal_3Jcl']")).sendKeys("Test Event");
-
     driver.findElement(By.xpath("//button[@id='blog-submit-button-save']")).click();
 
 
 }
-
+@Test
+    public void test_case_2() throws InterruptedException {
+    driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-calendar']//span")).click();
+    driver.findElement(By.xpath("//input[@id='feed-cal-event-namecal_3Jcl']")).sendKeys("Test Event");
+    Thread.sleep(3000);
+    driver.findElement(By.xpath("//button[@id='blog-submit-button-cancel']")).click();
+}
 
 
 
