@@ -63,7 +63,7 @@ public class CreateAPoll4 {
    WebElement addMoreElement = driver.findElement(By.xpath("//a[.='Add more']"));
    addMoreElement.click();
        WebDriverFactory.sleep(3);
-   driver.findElement(By.xpath("//div[.='Sevara Isroilova']/div")).click();
+   driver.findElement(By.xpath("//div[.='helpdesk26@cybertekschool.com']//div")).click();
        WebDriverFactory.sleep(3);
    driver.findElement(By.xpath("//span[@class='popup-window-close-icon']")).click();
        WebDriverFactory.sleep(3);
