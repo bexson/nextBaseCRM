@@ -20,6 +20,6 @@ public abstract class TestBase {
 
     @AfterMethod
     public void close(){
-        driver.close();
+
     }
 }
