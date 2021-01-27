@@ -10,10 +10,10 @@ import java.util.concurrent.TimeUnit;
 public abstract class TestBase {
     public WebDriver driver;
     // please guys don't change here anything
-
     @BeforeClass // this will run 1 time only before class
     public void setupClass(){
         driver = WebDriverFactory.getDriver("chrome");
+        assert driver != null;
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
