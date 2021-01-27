@@ -1,5 +1,6 @@
 package com.nextBaseCRM.tests.Bektemir;
 
+import com.nextBaseCRM.tests.Bektemir.utilities.ConfigurationReader;
 import com.nextBaseCRM.tests.Bektemir.utilities.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CreateAPoll4 {
     WebDriver driver;
+    public String url = ConfigurationReader.getProperty("url");
 
     @BeforeClass
     public void setupDriver(){
@@ -22,7 +24,7 @@ public class CreateAPoll4 {
        driver = new ChromeDriver();
 
        WebDriverFactory.manageWebDriver(driver);
-       driver.get("https://login2.nextbasecrm.com/stream/");
+       driver.get(url);
       WebDriverFactory.sleep(2);
     }
 
@@ -38,11 +40,13 @@ public class CreateAPoll4 {
          String expectedTitle = "Authorization";
          String actualTitle = driver.getTitle();
          Assert.assertEquals(expectedTitle,actualTitle);
+         String username1= ConfigurationReader.getProperty("username1");
+         String password = ConfigurationReader.getProperty("password");
 
-         driver.findElement(By.name("USER_LOGIN")).sendKeys("helpdesk33@cybertekschool.com"); //username
-        driver.findElement(By.name("USER_PASSWORD")).sendKeys("UserUser");//password
+         driver.findElement(By.name("USER_LOGIN")).sendKeys(username1); //username
+        driver.findElement(By.name("USER_PASSWORD")).sendKeys(password); //password
         driver.findElement(By.className("login-btn")).click();//click login button
-        String expectedURL = "https://login2.nextbasecrm.com/stream/?login=yes";
+        String expectedURL = url;
         String actualURL = driver.getCurrentUrl();
         Assert.assertEquals(expectedURL,actualURL);
 //==================================FINISHED WITH MY PRE-CONDITION======================================================
