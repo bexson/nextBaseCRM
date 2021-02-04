@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class WebDriverFactory {
     //Chrome
     public static WebDriver getDriver(String browserType){
-        if (browserType.equalsIgnoreCase("chrome")){
+        if (browserType.equalsIgnoreCase(ConfigurationReader.getProperty("browser"))){
             WebDriverManager.chromedriver().setup();
 
             return new ChromeDriver();
