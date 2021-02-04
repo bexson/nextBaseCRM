@@ -4,6 +4,7 @@ import com.nextBaseCRM.tests.Bektemir.utilities.WebDriverFactory;
 import com.nextBaseCRM.tests.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -49,10 +50,36 @@ public class SendAnEvent  {
 }
 @Test
     public void test_case_2() throws InterruptedException {
-    driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-calendar']//span")).click();
-    driver.findElement(By.xpath("//input[@id='feed-cal-event-namecal_3Jcl']")).sendKeys("Test Event");
-    Thread.sleep(3000);
-    driver.findElement(By.xpath("//button[@id='blog-submit-button-cancel']")).click();
+       driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-calendar']//span")).click();
+       driver.findElement(By.xpath("//input[@id='feed-cal-event-namecal_3Jcl']")).sendKeys("Test Event");
+       Thread.sleep(5000);
+       driver.findElement(By.xpath("//button[@id='blog-submit-button-cancel']")).click();
+}
+
+
+@Test
+    public void test_case_3() throws InterruptedException {
+    
+       driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-calendar']//span")).click();
+       Thread.sleep(5000);
+       driver.findElement(By.xpath("//input[@name='DATE_FROM']")).click();
+       Thread.sleep(5000);
+       driver.findElement(By.xpath("//a[@class='bx-calendar-cell'][@data-date='1611878400000']")).click();
+       Thread.sleep(5000);
+       driver.findElement(By.xpath("//input[@id='feed_cal_event_from_timecal_3Jcl']"));
+       Thread.sleep(5000);
+       driver.findElement(By.xpath("//input[@title='Hours']")).sendKeys("");
+       Thread.sleep(5000);
+       driver.findElement(By.xpath("//input[@title='Minutes']")).sendKeys("00");
+
+
+
+
+
+
+
+
+
 }
 
 
