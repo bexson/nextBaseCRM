@@ -52,7 +52,7 @@ public class SendAnEvent  {
 
 
     public void test_case_2() {
-        preCondition();
+
        driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-calendar']//span")).click();
        driver.findElement(By.xpath("//input[@id='feed-cal-event-namecal_3Jcl']")).sendKeys("Test Event");
        WebDriverFactory.sleep(2);
@@ -63,7 +63,7 @@ public class SendAnEvent  {
 @Test
     public void test_case_3() {
 
-        preCondition();
+
 
        driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-calendar']//span")).click();
        WebDriverFactory.sleep(2);
