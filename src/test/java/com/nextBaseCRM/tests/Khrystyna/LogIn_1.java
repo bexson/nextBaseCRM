@@ -7,18 +7,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import org.openqa.selenium.Cookie;
 
 
-
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class LogIn_1 {
 
     WebDriver driver;
+    SensitiveData sensitiveData;
 
 
     @BeforeClass
@@ -30,59 +30,121 @@ public class LogIn_1 {
 
     }
 
-    @Test
-    public void test_case_G17_90(){
+    @BeforeTest
+    public void setup(){
+        sensitiveData = new SensitiveData();
+    }
+
+
+    @Test()
+    public void test_case_G17_90() throws InterruptedException {
         //Verify HELPDESK USER can login
 
         //========================================================================================================//
-        //importing email & password INFO
-        SensitiveData sensitiveData = new SensitiveData();
-
         //locating login & password fields
-        WebElement loginField = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-
-        //adding email/password
-        loginField.sendKeys(sensitiveData.getHelpDeskEmail());
-        passwordField.sendKeys(sensitiveData.getPassword());
+        driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).sendKeys(sensitiveData.getHelpDeskEmail());;
+        driver.findElement(By.cssSelector("input[type='password']")).sendKeys(sensitiveData.getPassword());
 
         //locating "Remember me on this computer" button
-        WebElement RememberMeButton = driver.findElement(By.id("USER_REMEMBER"));
-        RememberMeButton.click();
+        driver.findElement(By.id("USER_REMEMBER")).click();
 
         //locating login button & login to WebSite
-        WebElement LoginButton = driver.findElement(By.xpath("//input[@value='Log In']"));
-        LoginButton.click();
+        driver.findElement(By.xpath("//input[@value='Log In']")).click();
 
         //Comparing expectedURL with actualURL
         String expectedURL = "https://login2.nextbasecrm.com/stream/?login=yes";
         String actualURL = driver.getCurrentUrl();
 
-        Assert.assertEquals(expectedURL, actualURL, "Actual URL is different from expectedURL, TEST FAILED!!! ");
+        Assert.assertEquals(actualURL, expectedURL, "Actual URL is different from expectedURL, TEST FAILED!!! " +
+                "expected= "+expectedURL+" actualURL= "+actualURL);
+
+        //                                          log out
+        //locating dropdown to logOut
+        driver.findElement(By.cssSelector("div[class='user-block']")).click();
+
+        //locating logOut button >>> log out
+        driver.findElement(By.xpath("//span[.='Log out']")).click();
+        WebDriverFactory.sleep(5);
+
 
         //===========================================================================================================//
 
     }
-    @AfterMethod
-    public void logOutMethod(){
-        //================================================================================================//
-        //locating dropdown to logOut
-        WebElement LogoutDropdown = driver.findElement(By.cssSelector("div[class='user-block']"));
-        LogoutDropdown.click();
+
+
+    @Test()
+    public void test_case_G17_89(){
+        //Verify HELPDESK USER can save email
+        //============================================================================================================//
+
+        //locating login & password fields
+        driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).sendKeys(sensitiveData.getHelpDeskEmail());;
+        driver.findElement(By.cssSelector("input[type='password']")).sendKeys(sensitiveData.getPassword());
+
+        //locating "Remember me on this computer" button
+        driver.findElement(By.id("USER_REMEMBER")).click();
+
+        //locating login button & login to WebSite
+        driver.findElement(By.xpath("//input[@value='Log In']")).click();
+
+        //logout
+        driver.findElement(By.cssSelector("div[class='user-block']")).click();
 
         //locating logOut button >>> log out
-        WebElement LogOutButton = driver.findElement(By.xpath("//span[.='Log out']"));
-        LogOutButton.click();
+        driver.findElement(By.xpath("//span[.='Log out']")).click();
+        //locating logIn field to see if our email is saved
+        String ActualResult = driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).getAttribute("value");
+        String ExpectedResult = sensitiveData.getHelpDeskEmail();
 
-        //==================================================================================================//
-    }
+        Assert.assertEquals(ExpectedResult, ActualResult);
 
+}
+
+    @Test()
     public void test_case_G17_91(){
-        //Verify HELPDESK USER can login
+
+        //Verify HELPDESK USER can access to "FORGOT YOUR PASSWORD?"
+
+        //===================================================================================================//
+
+        //locating FORGET YOUR PASSWORD? button
+       driver.findElement(By.className("login-link-forgot-pass")).click();
+
+        //locating email field
+        driver.findElement(By.className("login-inp")).clear();
+        driver.findElement(By.name("USER_EMAIL")).sendKeys(sensitiveData.getHelpDeskEmail());
+
+        //Locating RESET PASSWORD button
+        driver.findElement(By.xpath("//button[.='Reset password']")).click();
+
+        //creating actual and expected result
+        String expectedResult ="A code to reset your password and your registration information has just been " +
+                "sent to your e-mail address. Please check your e-mail. Note that the reset code is " +
+                "re-generated on each request.";
+
+        String actualResult = driver.findElement(By.className("notetext")).getText();
+
+        Assert.assertEquals(expectedResult, actualResult, "Reset password confirmation FAILED!!!");
+
+        //====================================================================================================//
+
     }
+
+
+
+/*
 
     @AfterClass
     public void tearDownClass(){
-  //      driver.quit();
+        WebDriverFactory.sleep(3);
+        driver.close();
     }
+
+
+ */
+
+
+
+
+
 }

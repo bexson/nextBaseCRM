@@ -13,7 +13,9 @@ public class SensitiveData {
     }
 
     public String getHrEmail(){
+
         return HrEmail;
+
     }
 
     public String getMarketingEmail(){
@@ -23,6 +25,7 @@ public class SensitiveData {
     public String getPassword(){
         return password;
     }
+
 
 
 
