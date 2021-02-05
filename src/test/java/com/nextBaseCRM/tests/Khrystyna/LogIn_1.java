@@ -8,11 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import org.openqa.selenium.Cookie;
-
-
-import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class LogIn_1 {
@@ -36,10 +31,9 @@ public class LogIn_1 {
     }
 
 
-    @Test()
+    @Test(priority = 1 )
     public void test_case_G17_90() throws InterruptedException {
-        //Verify HELPDESK USER can login
-
+        //                              Verify HELPDESK USER can login
         //========================================================================================================//
         //locating login & password fields
         driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).sendKeys(sensitiveData.getHelpDeskEmail());;
@@ -55,9 +49,8 @@ public class LogIn_1 {
         String expectedURL = "https://login2.nextbasecrm.com/stream/?login=yes";
         String actualURL = driver.getCurrentUrl();
 
-        Assert.assertEquals(actualURL, expectedURL, "Actual URL is different from expectedURL, TEST FAILED!!! " +
-                "expected= "+expectedURL+" actualURL= "+actualURL);
-
+        Assert.assertEquals(expectedURL, actualURL);
+        //------------------------------------------------------------------------------------------------------------//
         //                                          log out
         //locating dropdown to logOut
         driver.findElement(By.cssSelector("div[class='user-block']")).click();
@@ -66,18 +59,18 @@ public class LogIn_1 {
         driver.findElement(By.xpath("//span[.='Log out']")).click();
         WebDriverFactory.sleep(5);
 
-
         //===========================================================================================================//
 
     }
 
 
-    @Test()
+    @Test(priority = 2)
     public void test_case_G17_89(){
-        //Verify HELPDESK USER can save email
+        //                              Verify HELPDESK USER can save email
         //============================================================================================================//
 
         //locating login & password fields
+        driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).clear();
         driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).sendKeys(sensitiveData.getHelpDeskEmail());;
         driver.findElement(By.cssSelector("input[type='password']")).sendKeys(sensitiveData.getPassword());
 
@@ -96,19 +89,20 @@ public class LogIn_1 {
         String ActualResult = driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).getAttribute("value");
         String ExpectedResult = sensitiveData.getHelpDeskEmail();
 
-        Assert.assertEquals(ExpectedResult, ActualResult);
+        Assert.assertEquals(ExpectedResult, ActualResult, "LogIn information is not saved or wrong");
+
+        //============================================================================================================//
 
 }
 
-    @Test()
+    @Test(priority = 3)
     public void test_case_G17_91(){
 
-        //Verify HELPDESK USER can access to "FORGOT YOUR PASSWORD?"
-
+        //              Verify HELPDESK USER can access to "FORGOT YOUR PASSWORD?"
         //===================================================================================================//
 
         //locating FORGET YOUR PASSWORD? button
-       driver.findElement(By.className("login-link-forgot-pass")).click();
+        driver.findElement(By.className("login-link-forgot-pass")).click();
 
         //locating email field
         driver.findElement(By.className("login-inp")).clear();
@@ -130,10 +124,6 @@ public class LogIn_1 {
 
     }
 
-
-
-/*
-
     @AfterClass
     public void tearDownClass(){
         WebDriverFactory.sleep(3);
@@ -141,7 +131,7 @@ public class LogIn_1 {
     }
 
 
- */
+
 
 
 
