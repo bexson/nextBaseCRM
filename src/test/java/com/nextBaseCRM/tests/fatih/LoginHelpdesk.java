@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class UserStory6 {
+public class LoginHelpdesk {
 
     public void sleep(long seconds){
         try{
