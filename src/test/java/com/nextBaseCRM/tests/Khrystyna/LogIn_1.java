@@ -16,28 +16,25 @@ public class LogIn_1 {
     SensitiveData sensitiveData;
 
 
-    @BeforeClass
+    @BeforeTest()
     public void driverSetup(){
        driver = WebDriverFactory.getDriver("chrome");
        driver.manage().window().maximize();
        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
        driver.get("https://login2.nextbasecrm.com/stream/");
-
-    }
-
-    @BeforeTest
-    public void setup(){
         sensitiveData = new SensitiveData();
+
     }
 
 
-    @Test(priority = 1 )
+    @Test(priority = 1)
     public void test_case_G17_90() throws InterruptedException {
         //                              Verify HELPDESK USER can login
         //========================================================================================================//
         //locating login & password fields
         driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).sendKeys(sensitiveData.getHelpDeskEmail());;
         driver.findElement(By.cssSelector("input[type='password']")).sendKeys(sensitiveData.getPassword());
+
 
         //locating "Remember me on this computer" button
         driver.findElement(By.id("USER_REMEMBER")).click();
@@ -49,10 +46,13 @@ public class LogIn_1 {
         String expectedURL = "https://login2.nextbasecrm.com/stream/?login=yes";
         String actualURL = driver.getCurrentUrl();
 
+
         Assert.assertEquals(expectedURL, actualURL);
+
         //------------------------------------------------------------------------------------------------------------//
         //                                          log out
         //locating dropdown to logOut
+        WebDriverFactory.sleep(3);
         driver.findElement(By.cssSelector("div[class='user-block']")).click();
 
         //locating logOut button >>> log out
@@ -116,6 +116,7 @@ public class LogIn_1 {
                 "sent to your e-mail address. Please check your e-mail. Note that the reset code is " +
                 "re-generated on each request.";
 
+        WebDriverFactory.sleep(3);
         String actualResult = driver.findElement(By.className("notetext")).getText();
 
         Assert.assertEquals(expectedResult, actualResult, "Reset password confirmation FAILED!!!");
@@ -129,6 +130,8 @@ public class LogIn_1 {
         WebDriverFactory.sleep(3);
         driver.close();
     }
+
+
 
 
 
