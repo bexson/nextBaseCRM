@@ -5,6 +5,8 @@ import com.nextBaseCRM.tests.Nikola.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -25,12 +27,13 @@ public class LogOut {
 
     }
 
-    @Test
-    public void Pre_Conditions_G17_83() {
+    @Test (priority = 1)
+    public void Pre_Conditions_G17_83() throws InterruptedException {
                                 //Creating the pre-condition for HELP DESK user (Login In)
         //========================================================================================
         //Locating Log In field
         WebElement LoginField = driver.findElement(By.name("USER_LOGIN"));
+        LoginField.clear();
         LoginField.sendKeys(sensitiveData.getHelpDeskEmail());
 
         //Locating the password field
@@ -40,10 +43,11 @@ public class LogOut {
         //Locating Log In button
         WebElement LogInButton = driver.findElement(By.cssSelector("input[value='Log In']"));
         LogInButton.click();
+        Thread.sleep(2000);
     }
 
-    @Test
-    public void Test_Case_G17_83() {
+    @Test (priority = 2)
+    public void Test_Case_G17_83() throws InterruptedException {
                                 //Verify HELP DESK user can log out
         //==========================================================================================
         // Locating Drop Down menu button
@@ -54,14 +58,22 @@ public class LogOut {
         WebElement LogOutButton = driver.findElement(By.xpath("//span[.='Log out']"));
         LogOutButton.click();
 
+        // Comparing actual and expected result
+        String ExpectedResult = "https://login2.nextbasecrm.com/auth/?backurl=%2Fstream%2F";
+        String ActualResult = driver.getCurrentUrl();
+
+        Assert.assertEquals(ExpectedResult, ActualResult);
+        Thread.sleep(2000);
+
     }
 
-    @Test
-    public void Pre_Conditions_G17_84() {
+    @Test (priority = 3)
+    public void Pre_Conditions_G17_84() throws InterruptedException {
                                  //Creating the pre-condition for HR user (Login In)
         //========================================================================================
         //Locating Log In field
         WebElement LoginField = driver.findElement(By.name("USER_LOGIN"));
+        LoginField.clear();
         LoginField.sendKeys(sensitiveData.getHrEmail());
 
         //Locating the password field
@@ -71,10 +83,11 @@ public class LogOut {
         //Locating Log In button
         WebElement LogInButton = driver.findElement(By.cssSelector("input[value='Log In']"));
         LogInButton.click();
+        Thread.sleep(2000);
     }
 
-    @Test
-    public void Test_Case_G17_84() {
+    @Test (priority = 4)
+    public void Test_Case_G17_84() throws InterruptedException {
                                 //Verify HELP DESK user can log out
         //==========================================================================================
         //Locating Drop Down menu button
@@ -85,16 +98,24 @@ public class LogOut {
         WebElement LogOutButton = driver.findElement(By.xpath("//span[.='Log out']"));
         LogOutButton.click();
 
+        // Comparing actual and expected result
+        String ExpectedResult = "https://login2.nextbasecrm.com/auth/?backurl=%2Fstream%2F";
+        String ActualResult = driver.getCurrentUrl();
+
+        Assert.assertEquals(ExpectedResult, ActualResult);
+        Thread.sleep(2000);
+
 
     }
 
-    @Test
-    public void Pre_Conditions_G17_85() {
-        //Creating the pre-condition for HR user (Login In)
+    @Test (priority = 5)
+    public void Pre_Conditions_G17_85() throws InterruptedException {
+                             //Creating the pre-condition for MARKETING user (Login In)
         //========================================================================================
         //Locating Log In field
         WebElement LoginField = driver.findElement(By.name("USER_LOGIN"));
-        LoginField.sendKeys(sensitiveData.getHrEmail());
+        LoginField.clear();
+        LoginField.sendKeys(sensitiveData.getMarketingEmail());
 
         //Locating the password field
         WebElement PasswordField = driver.findElement(By.xpath("//input[@type='password']"));
@@ -103,11 +124,12 @@ public class LogOut {
         //Locating Log In button
         WebElement LogInButton = driver.findElement(By.cssSelector("input[value='Log In']"));
         LogInButton.click();
+        Thread.sleep(2000);
     }
 
-    @Test
+    @Test (priority = 6)
     public void Test_Case_G17_85() {
-        //Verify HELP DESK user can log out
+                               //Verify MARKETING user can log out
         //==========================================================================================
         //Locating Drop Down menu button
         WebElement DropDownButton = driver.findElement(By.cssSelector("div[id='user-block']"));
@@ -117,8 +139,19 @@ public class LogOut {
         WebElement LogOutButton = driver.findElement(By.xpath("//span[.='Log out']"));
         LogOutButton.click();
 
+        // Comparing actual and expected result
+        String ExpectedResult = "https://login2.nextbasecrm.com/auth/?backurl=%2Fstream%2F";
+        String ActualResult = driver.getCurrentUrl();
+
+        Assert.assertEquals(ExpectedResult, ActualResult);
+
+
 
     }
 
+    @AfterClass
+    public void TearDownClass (){
+        driver.close();
+    }
 }
 
