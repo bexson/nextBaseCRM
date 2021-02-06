@@ -16,7 +16,7 @@ public class LogOut {
     SensitiveData sensitiveData;
 
     @BeforeClass
-    public void DriverSetUp (){
+    public void DriverSetUp() {
         driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -26,8 +26,9 @@ public class LogOut {
     }
 
     @Test
-    public void PreConditions (){
-        //Creating the pre-condition to user story 13 (Login In)
+    public void Pre_Conditions_G17_83() {
+                                //Creating the pre-condition for HELP DESK user (Login In)
+        //========================================================================================
         //Locating Log In field
         WebElement LoginField = driver.findElement(By.name("USER_LOGIN"));
         LoginField.sendKeys(sensitiveData.getHelpDeskEmail());
@@ -42,9 +43,82 @@ public class LogOut {
     }
 
     @Test
-    public void TestCaseG17_83(){
+    public void Test_Case_G17_83() {
+                                //Verify HELP DESK user can log out
+        //==========================================================================================
+        // Locating Drop Down menu button
+        WebElement DropDownButton = driver.findElement(By.cssSelector("div[id='user-block']"));
+        DropDownButton.click();
+
+        //Locating Log Out button
+        WebElement LogOutButton = driver.findElement(By.xpath("//span[.='Log out']"));
+        LogOutButton.click();
 
     }
 
+    @Test
+    public void Pre_Conditions_G17_84() {
+                                 //Creating the pre-condition for HR user (Login In)
+        //========================================================================================
+        //Locating Log In field
+        WebElement LoginField = driver.findElement(By.name("USER_LOGIN"));
+        LoginField.sendKeys(sensitiveData.getHrEmail());
+
+        //Locating the password field
+        WebElement PasswordField = driver.findElement(By.xpath("//input[@type='password']"));
+        PasswordField.sendKeys(sensitiveData.getPassword());
+
+        //Locating Log In button
+        WebElement LogInButton = driver.findElement(By.cssSelector("input[value='Log In']"));
+        LogInButton.click();
+    }
+
+    @Test
+    public void Test_Case_G17_84() {
+                                //Verify HELP DESK user can log out
+        //==========================================================================================
+        //Locating Drop Down menu button
+        WebElement DropDownButton = driver.findElement(By.cssSelector("div[id='user-block']"));
+        DropDownButton.click();
+
+        //Locating Log Out button
+        WebElement LogOutButton = driver.findElement(By.xpath("//span[.='Log out']"));
+        LogOutButton.click();
+
+
+    }
+
+    @Test
+    public void Pre_Conditions_G17_85() {
+        //Creating the pre-condition for HR user (Login In)
+        //========================================================================================
+        //Locating Log In field
+        WebElement LoginField = driver.findElement(By.name("USER_LOGIN"));
+        LoginField.sendKeys(sensitiveData.getHrEmail());
+
+        //Locating the password field
+        WebElement PasswordField = driver.findElement(By.xpath("//input[@type='password']"));
+        PasswordField.sendKeys(sensitiveData.getPassword());
+
+        //Locating Log In button
+        WebElement LogInButton = driver.findElement(By.cssSelector("input[value='Log In']"));
+        LogInButton.click();
+    }
+
+    @Test
+    public void Test_Case_G17_85() {
+        //Verify HELP DESK user can log out
+        //==========================================================================================
+        //Locating Drop Down menu button
+        WebElement DropDownButton = driver.findElement(By.cssSelector("div[id='user-block']"));
+        DropDownButton.click();
+
+        //Locating Log Out button
+        WebElement LogOutButton = driver.findElement(By.xpath("//span[.='Log out']"));
+        LogOutButton.click();
+
+
+    }
 
 }
+
